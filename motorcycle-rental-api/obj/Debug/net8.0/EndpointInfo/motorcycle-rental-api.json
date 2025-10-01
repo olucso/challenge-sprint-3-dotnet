@@ -1,0 +1,1045 @@
+{
+  "openapi": "3.0.1",
+  "info": {
+    "title": "motorcycle-rental-api",
+    "version": "1.0"
+  },
+  "paths": {
+    "/api/Client": {
+      "get": {
+        "tags": [
+          "Client"
+        ],
+        "summary": "Lista de Clientes",
+        "description": "Retorna uma lista completa, com todos os clientes cadastrados.",
+        "parameters": [
+          {
+            "name": "Displacement",
+            "in": "query",
+            "schema": {
+              "type": "integer",
+              "format": "int32",
+              "default": 0
+            }
+          },
+          {
+            "name": "TotalRecords",
+            "in": "query",
+            "schema": {
+              "type": "integer",
+              "format": "int32",
+              "default": 3
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Lista retornada com sucesso.",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/ClientEntity"
+                  }
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/ClientEntity"
+                  }
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/ClientEntity"
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "Client"
+        ],
+        "summary": "Cadastro de Cliente",
+        "description": "Cadastra um cliente no banco de dados.",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ClientDto"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ClientDto"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/ClientDto"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Cliente cadastrado com sucesso.",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/ClientEntity"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ClientEntity"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ClientEntity"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Erro ao cadastrar o cliente."
+          }
+        }
+      },
+      "put": {
+        "tags": [
+          "Client"
+        ],
+        "summary": "Alteração de Cliente",
+        "description": "Atualiza o cadastro de um cliente no banco de dados.",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "query",
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ClientDto"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ClientDto"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/ClientDto"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Cliente atualizado com sucesso.",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/ClientEntity"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ClientEntity"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ClientEntity"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Cliente não encontrado."
+          }
+        }
+      }
+    },
+    "/api/Client/{id}": {
+      "get": {
+        "tags": [
+          "Client"
+        ],
+        "summary": "Busca de cliente por seu ID",
+        "description": "Retorna um cliente específico, com base no ID informado.",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Cliente encontrado.",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/ClientEntity"
+                  }
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/ClientEntity"
+                  }
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/ClientEntity"
+                  }
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Cliente não encontrado."
+          }
+        }
+      },
+      "delete": {
+        "tags": [
+          "Client"
+        ],
+        "summary": "Deleção de Cliente",
+        "description": "Deleta um cliente a partir de seu ID.",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Cliente deletado com sucesso."
+          },
+          "404": {
+            "description": "Cliente não encontrado."
+          }
+        }
+      }
+    },
+    "/api/Motorcycle": {
+      "get": {
+        "tags": [
+          "Motorcycle"
+        ],
+        "summary": "Lista de Motos",
+        "description": "Retorna todas as motos cadastradas.",
+        "parameters": [
+          {
+            "name": "Displacement",
+            "in": "query",
+            "schema": {
+              "type": "integer",
+              "format": "int32",
+              "default": 0
+            }
+          },
+          {
+            "name": "TotalRecords",
+            "in": "query",
+            "schema": {
+              "type": "integer",
+              "format": "int32",
+              "default": 3
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Lista retornada com sucesso.",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/MotorcycleEntity"
+                  }
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/MotorcycleEntity"
+                  }
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/MotorcycleEntity"
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "Motorcycle"
+        ],
+        "summary": "Cadastro de Moto",
+        "description": "Cadastra uma nova moto.",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/MotorcycleDto"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/MotorcycleDto"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/MotorcycleDto"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Moto cadastrada com sucesso.",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/MotorcycleEntity"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MotorcycleEntity"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MotorcycleEntity"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Erro ao cadastrar moto."
+          }
+        }
+      },
+      "put": {
+        "tags": [
+          "Motorcycle"
+        ],
+        "summary": "Atualização de Moto",
+        "description": "Atualiza o cadastro da moto.",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "query",
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/MotorcycleDto"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/MotorcycleDto"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/MotorcycleDto"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Moto atualizada com sucesso.",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/MotorcycleEntity"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MotorcycleEntity"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MotorcycleEntity"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Moto não encontrada."
+          }
+        }
+      }
+    },
+    "/api/Motorcycle/{id}": {
+      "get": {
+        "tags": [
+          "Motorcycle"
+        ],
+        "summary": "Busca Moto por ID",
+        "description": "Retorna uma moto pelo ID.",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Moto encontrada.",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/MotorcycleEntity"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MotorcycleEntity"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MotorcycleEntity"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Moto não encontrada."
+          }
+        }
+      },
+      "delete": {
+        "tags": [
+          "Motorcycle"
+        ],
+        "summary": "Deleção de Moto",
+        "description": "Deleta uma moto pelo ID.",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Moto deletada com sucesso."
+          },
+          "404": {
+            "description": "Moto não encontrada."
+          }
+        }
+      }
+    },
+    "/api/Rental": {
+      "get": {
+        "tags": [
+          "Rental"
+        ],
+        "summary": "Lista de Aluguéis",
+        "description": "Retorna uma lista completa de aluguéis com paginação.",
+        "parameters": [
+          {
+            "name": "Displacement",
+            "in": "query",
+            "schema": {
+              "type": "integer",
+              "format": "int32",
+              "default": 0
+            }
+          },
+          {
+            "name": "TotalRecords",
+            "in": "query",
+            "schema": {
+              "type": "integer",
+              "format": "int32",
+              "default": 3
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Lista retornada com sucesso.",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/RentalEntity"
+                  }
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/RentalEntity"
+                  }
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/RentalEntity"
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "Rental"
+        ],
+        "summary": "Cadastro de Aluguel",
+        "description": "Cadastra um novo aluguel no sistema.",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/RentalDto"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/RentalDto"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/RentalDto"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Aluguel cadastrado com sucesso.",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/RentalEntity"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/RentalEntity"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/RentalEntity"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Erro ao cadastrar o aluguel."
+          }
+        }
+      },
+      "put": {
+        "tags": [
+          "Rental"
+        ],
+        "summary": "Atualização de Aluguel",
+        "description": "Atualiza os dados de um aluguel.",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "query",
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/RentalDto"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/RentalDto"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/RentalDto"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Aluguel atualizado com sucesso.",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/RentalEntity"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/RentalEntity"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/RentalEntity"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Aluguel não encontrado."
+          }
+        }
+      }
+    },
+    "/api/Rental/{id}": {
+      "get": {
+        "tags": [
+          "Rental"
+        ],
+        "summary": "Busca de Aluguel por ID",
+        "description": "Retorna um aluguel específico, com base no ID informado.",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Aluguel encontrado.",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/RentalEntity"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/RentalEntity"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/RentalEntity"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Aluguel não encontrado."
+          }
+        }
+      },
+      "delete": {
+        "tags": [
+          "Rental"
+        ],
+        "summary": "Deleção de Aluguel",
+        "description": "Remove um aluguel com base no ID.",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Aluguel deletado com sucesso."
+          },
+          "404": {
+            "description": "Aluguel não encontrado."
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "ClientDto": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string",
+            "nullable": true
+          },
+          "cpf": {
+            "type": "string",
+            "nullable": true
+          },
+          "street": {
+            "type": "string",
+            "nullable": true
+          },
+          "houseNumber": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "address2": {
+            "type": "string",
+            "nullable": true
+          },
+          "district": {
+            "type": "string",
+            "nullable": true
+          },
+          "city": {
+            "type": "string",
+            "nullable": true
+          },
+          "state": {
+            "type": "string",
+            "nullable": true
+          },
+          "cep": {
+            "type": "string",
+            "nullable": true
+          },
+          "fone": {
+            "type": "string",
+            "nullable": true
+          },
+          "email": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "ClientEntity": {
+        "required": [
+          "cep",
+          "city",
+          "cpf",
+          "district",
+          "email",
+          "fone",
+          "houseNumber",
+          "id",
+          "name",
+          "state",
+          "street"
+        ],
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "name": {
+            "maxLength": 200,
+            "minLength": 0,
+            "type": "string"
+          },
+          "cpf": {
+            "maxLength": 11,
+            "minLength": 0,
+            "type": "string"
+          },
+          "street": {
+            "maxLength": 200,
+            "minLength": 0,
+            "type": "string"
+          },
+          "houseNumber": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "address2": {
+            "maxLength": 200,
+            "minLength": 0,
+            "type": "string",
+            "nullable": true
+          },
+          "district": {
+            "maxLength": 200,
+            "minLength": 0,
+            "type": "string"
+          },
+          "city": {
+            "maxLength": 200,
+            "minLength": 0,
+            "type": "string"
+          },
+          "state": {
+            "maxLength": 2,
+            "minLength": 0,
+            "type": "string"
+          },
+          "cep": {
+            "maxLength": 8,
+            "minLength": 0,
+            "type": "string"
+          },
+          "fone": {
+            "maxLength": 11,
+            "minLength": 0,
+            "type": "string"
+          },
+          "email": {
+            "maxLength": 200,
+            "minLength": 0,
+            "type": "string"
+          },
+          "rentals": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/RentalEntity"
+            },
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "MotorcycleDto": {
+        "type": "object",
+        "properties": {
+          "brand": {
+            "type": "string",
+            "nullable": true
+          },
+          "model": {
+            "type": "string",
+            "nullable": true
+          },
+          "plate": {
+            "type": "string",
+            "nullable": true
+          },
+          "manufacturingYear": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "dailyValue": {
+            "type": "number",
+            "format": "double"
+          },
+          "availability": {
+            "type": "boolean"
+          }
+        },
+        "additionalProperties": false
+      },
+      "MotorcycleEntity": {
+        "required": [
+          "availability",
+          "brand",
+          "dailyValue",
+          "id",
+          "manufacturingYear",
+          "model",
+          "plate"
+        ],
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "brand": {
+            "maxLength": 100,
+            "minLength": 0,
+            "type": "string"
+          },
+          "model": {
+            "maxLength": 100,
+            "minLength": 0,
+            "type": "string"
+          },
+          "plate": {
+            "maxLength": 7,
+            "minLength": 0,
+            "type": "string"
+          },
+          "manufacturingYear": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "dailyValue": {
+            "type": "number",
+            "format": "double"
+          },
+          "availability": {
+            "type": "boolean"
+          },
+          "rentals": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/RentalEntity"
+            },
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "RentalDto": {
+        "type": "object",
+        "properties": {
+          "clientId": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "motorcycleId": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "startDate": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "endDate": {
+            "type": "string",
+            "format": "date-time",
+            "nullable": true
+          },
+          "totalValue": {
+            "type": "number",
+            "format": "double"
+          },
+          "completed": {
+            "type": "boolean"
+          }
+        },
+        "additionalProperties": false
+      },
+      "RentalEntity": {
+        "required": [
+          "clientId",
+          "completed",
+          "id",
+          "motorcycleId",
+          "startDate",
+          "totalValue"
+        ],
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "clientId": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "client": {
+            "$ref": "#/components/schemas/ClientEntity"
+          },
+          "motorcycleId": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "motorcycle": {
+            "$ref": "#/components/schemas/MotorcycleEntity"
+          },
+          "startDate": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "endDate": {
+            "type": "string",
+            "format": "date-time",
+            "nullable": true
+          },
+          "totalValue": {
+            "type": "number",
+            "format": "double"
+          },
+          "completed": {
+            "type": "boolean"
+          }
+        },
+        "additionalProperties": false
+      }
+    }
+  }
+}
