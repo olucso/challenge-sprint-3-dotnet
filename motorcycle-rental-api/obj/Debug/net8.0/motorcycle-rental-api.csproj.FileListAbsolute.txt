@@ -272,3 +272,5 @@ C:\Users\Lucas\Downloads\BKP Challenge\dotnet\motorcycle-rental-api\motorcycle-r
 C:\Users\Lucas\Downloads\BKP Challenge\dotnet\motorcycle-rental-api\motorcycle-rental-api\bin\Debug\net8.0\Microsoft.Identity.Abstractions.dll
 C:\Users\Lucas\Downloads\BKP Challenge\dotnet\motorcycle-rental-api\motorcycle-rental-api\bin\Debug\net8.0\Microsoft.IdentityModel.Protocols.dll
 C:\Users\Lucas\Downloads\BKP Challenge\dotnet\motorcycle-rental-api\motorcycle-rental-api\bin\Debug\net8.0\Microsoft.IdentityModel.Protocols.OpenIdConnect.dll
+C:\Users\Lucas\Downloads\BKP Challenge\dotnet\motorcycle-rental-api\motorcycle-rental-api\bin\Debug\net8.0\Microsoft.AspNetCore.Mvc.Versioning.dll
+C:\Users\Lucas\Downloads\BKP Challenge\dotnet\motorcycle-rental-api\motorcycle-rental-api\bin\Debug\net8.0\Microsoft.AspNetCore.Mvc.Versioning.ApiExplorer.dll

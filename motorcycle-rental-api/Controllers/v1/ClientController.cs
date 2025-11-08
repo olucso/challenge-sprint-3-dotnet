@@ -12,8 +12,9 @@ using Swashbuckle.AspNetCore.Annotations;
 
 namespace motorcycle_rental_api.Controllers
 {
-    [Route("api/[controller]")]
     [ApiController]
+    [ApiVersion("1.0")]
+    [Route("api/v{version:apiVersion}/[controller]")]
     [Authorize]
     public class ClientController : ControllerBase
     {

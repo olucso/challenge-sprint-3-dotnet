@@ -7,10 +7,11 @@ using motorcycle_rental_api.Mappers;
 using motorcycle_rental_api.Models;
 using Swashbuckle.AspNetCore.Annotations;
 
-namespace motorcycle_rental_api.Controllers
+namespace motorcycle_rental_api.Controllers.v2
 {
-    [Route("api/[controller]")]
     [ApiController]
+    [ApiVersion("2.0")]
+    [Route("api/v{version:apiVersion}/[controller]")]
     [Authorize]
     public class MotorcycleController : ControllerBase
     {

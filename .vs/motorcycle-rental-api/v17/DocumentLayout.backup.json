@@ -3,28 +3,8 @@
   "WorkspaceRootPath": "C:\\Users\\Lucas\\Downloads\\BKP Challenge\\dotnet\\motorcycle-rental-api\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{7037BA85-C9A8-4D1B-B89D-C82A3CDB488D}|motorcycle-rental-api\\motorcycle-rental-api.csproj|c:\\users\\lucas\\downloads\\bkp challenge\\dotnet\\motorcycle-rental-api\\motorcycle-rental-api\\controllers\\authcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{7037BA85-C9A8-4D1B-B89D-C82A3CDB488D}|motorcycle-rental-api\\motorcycle-rental-api.csproj|solutionrelative:motorcycle-rental-api\\controllers\\authcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{7037BA85-C9A8-4D1B-B89D-C82A3CDB488D}|motorcycle-rental-api\\motorcycle-rental-api.csproj|c:\\users\\lucas\\downloads\\bkp challenge\\dotnet\\motorcycle-rental-api\\motorcycle-rental-api\\dtos\\userlogindto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{7037BA85-C9A8-4D1B-B89D-C82A3CDB488D}|motorcycle-rental-api\\motorcycle-rental-api.csproj|solutionrelative:motorcycle-rental-api\\dtos\\userlogindto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{7037BA85-C9A8-4D1B-B89D-C82A3CDB488D}|motorcycle-rental-api\\motorcycle-rental-api.csproj|c:\\users\\lucas\\downloads\\bkp challenge\\dotnet\\motorcycle-rental-api\\motorcycle-rental-api\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{7037BA85-C9A8-4D1B-B89D-C82A3CDB488D}|motorcycle-rental-api\\motorcycle-rental-api.csproj|solutionrelative:motorcycle-rental-api\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{7037BA85-C9A8-4D1B-B89D-C82A3CDB488D}|motorcycle-rental-api\\motorcycle-rental-api.csproj|c:\\users\\lucas\\downloads\\bkp challenge\\dotnet\\motorcycle-rental-api\\motorcycle-rental-api\\services\\jwtservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{7037BA85-C9A8-4D1B-B89D-C82A3CDB488D}|motorcycle-rental-api\\motorcycle-rental-api.csproj|solutionrelative:motorcycle-rental-api\\services\\jwtservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{7037BA85-C9A8-4D1B-B89D-C82A3CDB488D}|motorcycle-rental-api\\motorcycle-rental-api.csproj|c:\\users\\lucas\\downloads\\bkp challenge\\dotnet\\motorcycle-rental-api\\motorcycle-rental-api\\controllers\\clientcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{7037BA85-C9A8-4D1B-B89D-C82A3CDB488D}|motorcycle-rental-api\\motorcycle-rental-api.csproj|solutionrelative:motorcycle-rental-api\\controllers\\clientcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{7037BA85-C9A8-4D1B-B89D-C82A3CDB488D}|motorcycle-rental-api\\motorcycle-rental-api.csproj|c:\\users\\lucas\\downloads\\bkp challenge\\dotnet\\motorcycle-rental-api\\motorcycle-rental-api\\appsettings.development.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}",
-      "RelativeMoniker": "D:0:0:{7037BA85-C9A8-4D1B-B89D-C82A3CDB488D}|motorcycle-rental-api\\motorcycle-rental-api.csproj|solutionrelative:motorcycle-rental-api\\appsettings.development.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}"
+      "AbsoluteMoniker": "D:0:0:{7037BA85-C9A8-4D1B-B89D-C82A3CDB488D}|motorcycle-rental-api\\motorcycle-rental-api.csproj|c:\\users\\lucas\\downloads\\bkp challenge\\dotnet\\motorcycle-rental-api\\motorcycle-rental-api\\controllers\\v1\\clientcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{7037BA85-C9A8-4D1B-B89D-C82A3CDB488D}|motorcycle-rental-api\\motorcycle-rental-api.csproj|solutionrelative:motorcycle-rental-api\\controllers\\v1\\clientcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -34,7 +14,7 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 3,
+          "SelectedChildIndex": 2,
           "Children": [
             {
               "$type": "Bookmark",
@@ -46,80 +26,15 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
-              "Title": "UserLoginDto.cs",
-              "DocumentMoniker": "C:\\Users\\Lucas\\Downloads\\BKP Challenge\\dotnet\\motorcycle-rental-api\\motorcycle-rental-api\\Dtos\\UserLoginDto.cs",
-              "RelativeDocumentMoniker": "motorcycle-rental-api\\Dtos\\UserLoginDto.cs",
-              "ToolTip": "C:\\Users\\Lucas\\Downloads\\BKP Challenge\\dotnet\\motorcycle-rental-api\\motorcycle-rental-api\\Dtos\\UserLoginDto.cs",
-              "RelativeToolTip": "motorcycle-rental-api\\Dtos\\UserLoginDto.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAQAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-11-08T10:54:42.503Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
               "DocumentIndex": 0,
-              "Title": "AuthController.cs",
-              "DocumentMoniker": "C:\\Users\\Lucas\\Downloads\\BKP Challenge\\dotnet\\motorcycle-rental-api\\motorcycle-rental-api\\Controllers\\AuthController.cs",
-              "RelativeDocumentMoniker": "motorcycle-rental-api\\Controllers\\AuthController.cs",
-              "ToolTip": "C:\\Users\\Lucas\\Downloads\\BKP Challenge\\dotnet\\motorcycle-rental-api\\motorcycle-rental-api\\Controllers\\AuthController.cs",
-              "RelativeToolTip": "motorcycle-rental-api\\Controllers\\AuthController.cs",
-              "ViewState": "AgIAAAgAAAAAAAAAAADwvx0AAABGAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-11-08T10:54:15.521Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 4,
               "Title": "ClientController.cs",
-              "DocumentMoniker": "C:\\Users\\Lucas\\Downloads\\BKP Challenge\\dotnet\\motorcycle-rental-api\\motorcycle-rental-api\\Controllers\\ClientController.cs",
-              "RelativeDocumentMoniker": "motorcycle-rental-api\\Controllers\\ClientController.cs",
-              "ToolTip": "C:\\Users\\Lucas\\Downloads\\BKP Challenge\\dotnet\\motorcycle-rental-api\\motorcycle-rental-api\\Controllers\\ClientController.cs",
-              "RelativeToolTip": "motorcycle-rental-api\\Controllers\\ClientController.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAoAAAApAAAAAAAAAA==",
+              "DocumentMoniker": "C:\\Users\\Lucas\\Downloads\\BKP Challenge\\dotnet\\motorcycle-rental-api\\motorcycle-rental-api\\Controllers\\v1\\ClientController.cs",
+              "RelativeDocumentMoniker": "motorcycle-rental-api\\Controllers\\v1\\ClientController.cs",
+              "ToolTip": "C:\\Users\\Lucas\\Downloads\\BKP Challenge\\dotnet\\motorcycle-rental-api\\motorcycle-rental-api\\Controllers\\v1\\ClientController.cs",
+              "RelativeToolTip": "motorcycle-rental-api\\Controllers\\v1\\ClientController.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-11-08T01:38:47.868Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 3,
-              "Title": "JwtService.cs",
-              "DocumentMoniker": "C:\\Users\\Lucas\\Downloads\\BKP Challenge\\dotnet\\motorcycle-rental-api\\motorcycle-rental-api\\Services\\JwtService.cs",
-              "RelativeDocumentMoniker": "motorcycle-rental-api\\Services\\JwtService.cs",
-              "ToolTip": "C:\\Users\\Lucas\\Downloads\\BKP Challenge\\dotnet\\motorcycle-rental-api\\motorcycle-rental-api\\Services\\JwtService.cs",
-              "RelativeToolTip": "motorcycle-rental-api\\Services\\JwtService.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAQAAAASAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-11-08T01:34:27.739Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 2,
-              "Title": "Program.cs",
-              "DocumentMoniker": "C:\\Users\\Lucas\\Downloads\\BKP Challenge\\dotnet\\motorcycle-rental-api\\motorcycle-rental-api\\Program.cs",
-              "RelativeDocumentMoniker": "motorcycle-rental-api\\Program.cs",
-              "ToolTip": "C:\\Users\\Lucas\\Downloads\\BKP Challenge\\dotnet\\motorcycle-rental-api\\motorcycle-rental-api\\Program.cs",
-              "RelativeToolTip": "motorcycle-rental-api\\Program.cs",
-              "ViewState": "AgIAACQAAAAAAAAAAAAowDoAAAADAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-11-08T01:29:59.655Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 5,
-              "Title": "appsettings.Development.json",
-              "DocumentMoniker": "C:\\Users\\Lucas\\Downloads\\BKP Challenge\\dotnet\\motorcycle-rental-api\\motorcycle-rental-api\\appsettings.Development.json",
-              "RelativeDocumentMoniker": "motorcycle-rental-api\\appsettings.Development.json",
-              "ToolTip": "C:\\Users\\Lucas\\Downloads\\BKP Challenge\\dotnet\\motorcycle-rental-api\\motorcycle-rental-api\\appsettings.Development.json",
-              "RelativeToolTip": "motorcycle-rental-api\\appsettings.Development.json",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA8AAAADAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001642|",
-              "WhenOpened": "2025-11-08T01:28:44.617Z",
+              "WhenOpened": "2025-11-08T13:43:56.971Z",
               "EditorCaption": ""
             }
           ]

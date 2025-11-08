@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "QTGfcEeTR1k=",
+  "dgSpecHash": "AKWRo3OVLS0=",
   "success": true,
   "projectFilePath": "C:\\Users\\Lucas\\Downloads\\BKP Challenge\\dotnet\\motorcycle-rental-api\\motorcycle-rental-api\\motorcycle-rental-api.csproj",
   "expectedPackageFiles": [
@@ -16,6 +16,8 @@
     "C:\\Users\\Lucas\\.nuget\\packages\\identitymodel.oidcclient\\5.2.1\\identitymodel.oidcclient.5.2.1.nupkg.sha512",
     "C:\\Users\\Lucas\\.nuget\\packages\\kubernetesclient\\14.0.2\\kubernetesclient.14.0.2.nupkg.sha512",
     "C:\\Users\\Lucas\\.nuget\\packages\\microsoft.aspnetcore.authentication.jwtbearer\\8.0.21\\microsoft.aspnetcore.authentication.jwtbearer.8.0.21.nupkg.sha512",
+    "C:\\Users\\Lucas\\.nuget\\packages\\microsoft.aspnetcore.mvc.versioning\\5.0.0\\microsoft.aspnetcore.mvc.versioning.5.0.0.nupkg.sha512",
+    "C:\\Users\\Lucas\\.nuget\\packages\\microsoft.aspnetcore.mvc.versioning.apiexplorer\\5.0.0\\microsoft.aspnetcore.mvc.versioning.apiexplorer.5.0.0.nupkg.sha512",
     "C:\\Users\\Lucas\\.nuget\\packages\\microsoft.bcl.asyncinterfaces\\6.0.0\\microsoft.bcl.asyncinterfaces.6.0.0.nupkg.sha512",
     "C:\\Users\\Lucas\\.nuget\\packages\\microsoft.codeanalysis.analyzers\\3.3.3\\microsoft.codeanalysis.analyzers.3.3.3.nupkg.sha512",
     "C:\\Users\\Lucas\\.nuget\\packages\\microsoft.codeanalysis.common\\4.5.0\\microsoft.codeanalysis.common.4.5.0.nupkg.sha512",

@@ -11,6 +11,11 @@
         "Name": "login",
         "Type": "motorcycle_rental_api.Dtos.UserLoginDto",
         "IsRequired": true
+      },
+      {
+        "Name": "api-version",
+        "Type": "System.String",
+        "IsRequired": false
       }
     ],
     "ReturnTypes": [
@@ -29,7 +34,7 @@
   {
     "ContainingType": "motorcycle_rental_api.Controllers.ClientController",
     "Method": "Get",
-    "RelativePath": "api/Client",
+    "RelativePath": "api/v1/Client",
     "HttpMethod": "GET",
     "IsController": true,
     "Order": 0,
@@ -60,7 +65,7 @@
   {
     "ContainingType": "motorcycle_rental_api.Controllers.ClientController",
     "Method": "Post",
-    "RelativePath": "api/Client",
+    "RelativePath": "api/v1/Client",
     "HttpMethod": "POST",
     "IsController": true,
     "Order": 0,
@@ -91,7 +96,7 @@
   {
     "ContainingType": "motorcycle_rental_api.Controllers.ClientController",
     "Method": "Put",
-    "RelativePath": "api/Client",
+    "RelativePath": "api/v1/Client",
     "HttpMethod": "PUT",
     "IsController": true,
     "Order": 0,
@@ -127,7 +132,7 @@
   {
     "ContainingType": "motorcycle_rental_api.Controllers.ClientController",
     "Method": "Get",
-    "RelativePath": "api/Client/{id}",
+    "RelativePath": "api/v1/Client/{id}",
     "HttpMethod": "GET",
     "IsController": true,
     "Order": 0,
@@ -158,7 +163,7 @@
   {
     "ContainingType": "motorcycle_rental_api.Controllers.ClientController",
     "Method": "Delete",
-    "RelativePath": "api/Client/{id}",
+    "RelativePath": "api/v1/Client/{id}",
     "HttpMethod": "DELETE",
     "IsController": true,
     "Order": 0,
@@ -185,7 +190,7 @@
   {
     "ContainingType": "motorcycle_rental_api.Controllers.MotorcycleController",
     "Method": "Get",
-    "RelativePath": "api/Motorcycle",
+    "RelativePath": "api/v1/Motorcycle",
     "HttpMethod": "GET",
     "IsController": true,
     "Order": 0,
@@ -216,7 +221,7 @@
   {
     "ContainingType": "motorcycle_rental_api.Controllers.MotorcycleController",
     "Method": "Post",
-    "RelativePath": "api/Motorcycle",
+    "RelativePath": "api/v1/Motorcycle",
     "HttpMethod": "POST",
     "IsController": true,
     "Order": 0,
@@ -247,7 +252,7 @@
   {
     "ContainingType": "motorcycle_rental_api.Controllers.MotorcycleController",
     "Method": "Put",
-    "RelativePath": "api/Motorcycle",
+    "RelativePath": "api/v1/Motorcycle",
     "HttpMethod": "PUT",
     "IsController": true,
     "Order": 0,
@@ -283,7 +288,7 @@
   {
     "ContainingType": "motorcycle_rental_api.Controllers.MotorcycleController",
     "Method": "Get",
-    "RelativePath": "api/Motorcycle/{id}",
+    "RelativePath": "api/v1/Motorcycle/{id}",
     "HttpMethod": "GET",
     "IsController": true,
     "Order": 0,
@@ -314,7 +319,7 @@
   {
     "ContainingType": "motorcycle_rental_api.Controllers.MotorcycleController",
     "Method": "Delete",
-    "RelativePath": "api/Motorcycle/{id}",
+    "RelativePath": "api/v1/Motorcycle/{id}",
     "HttpMethod": "DELETE",
     "IsController": true,
     "Order": 0,
@@ -341,7 +346,7 @@
   {
     "ContainingType": "motorcycle_rental_api.Controllers.RentalController",
     "Method": "Get",
-    "RelativePath": "api/Rental",
+    "RelativePath": "api/v1/Rental",
     "HttpMethod": "GET",
     "IsController": true,
     "Order": 0,
@@ -372,7 +377,7 @@
   {
     "ContainingType": "motorcycle_rental_api.Controllers.RentalController",
     "Method": "Post",
-    "RelativePath": "api/Rental",
+    "RelativePath": "api/v1/Rental",
     "HttpMethod": "POST",
     "IsController": true,
     "Order": 0,
@@ -403,7 +408,7 @@
   {
     "ContainingType": "motorcycle_rental_api.Controllers.RentalController",
     "Method": "Put",
-    "RelativePath": "api/Rental",
+    "RelativePath": "api/v1/Rental",
     "HttpMethod": "PUT",
     "IsController": true,
     "Order": 0,
@@ -439,7 +444,7 @@
   {
     "ContainingType": "motorcycle_rental_api.Controllers.RentalController",
     "Method": "Get",
-    "RelativePath": "api/Rental/{id}",
+    "RelativePath": "api/v1/Rental/{id}",
     "HttpMethod": "GET",
     "IsController": true,
     "Order": 0,
@@ -470,7 +475,475 @@
   {
     "ContainingType": "motorcycle_rental_api.Controllers.RentalController",
     "Method": "Delete",
-    "RelativePath": "api/Rental/{id}",
+    "RelativePath": "api/v1/Rental/{id}",
+    "HttpMethod": "DELETE",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "System.Void",
+        "MediaTypes": [],
+        "StatusCode": 200
+      },
+      {
+        "Type": "System.Void",
+        "MediaTypes": [],
+        "StatusCode": 404
+      }
+    ]
+  },
+  {
+    "ContainingType": "motorcycle_rental_api.Controllers.v2.ClientController",
+    "Method": "Get",
+    "RelativePath": "api/v2/Client",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "Displacement",
+        "Type": "System.Int32",
+        "IsRequired": false
+      },
+      {
+        "Name": "TotalRecords",
+        "Type": "System.Int32",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "System.Collections.Generic.IEnumerable\u00601[[motorcycle_rental_api.Models.ClientEntity, motorcycle-rental-api, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "motorcycle_rental_api.Controllers.v2.ClientController",
+    "Method": "Post",
+    "RelativePath": "api/v2/Client",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "entity",
+        "Type": "motorcycle_rental_api.Dtos.ClientDto",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "motorcycle_rental_api.Models.ClientEntity",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      },
+      {
+        "Type": "System.Void",
+        "MediaTypes": [],
+        "StatusCode": 400
+      }
+    ]
+  },
+  {
+    "ContainingType": "motorcycle_rental_api.Controllers.v2.ClientController",
+    "Method": "Put",
+    "RelativePath": "api/v2/Client",
+    "HttpMethod": "PUT",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": false
+      },
+      {
+        "Name": "entity",
+        "Type": "motorcycle_rental_api.Dtos.ClientDto",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "motorcycle_rental_api.Models.ClientEntity",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      },
+      {
+        "Type": "System.Void",
+        "MediaTypes": [],
+        "StatusCode": 404
+      }
+    ]
+  },
+  {
+    "ContainingType": "motorcycle_rental_api.Controllers.v2.ClientController",
+    "Method": "Get",
+    "RelativePath": "api/v2/Client/{id}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "System.Collections.Generic.IEnumerable\u00601[[motorcycle_rental_api.Models.ClientEntity, motorcycle-rental-api, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      },
+      {
+        "Type": "System.Void",
+        "MediaTypes": [],
+        "StatusCode": 404
+      }
+    ]
+  },
+  {
+    "ContainingType": "motorcycle_rental_api.Controllers.v2.ClientController",
+    "Method": "Delete",
+    "RelativePath": "api/v2/Client/{id}",
+    "HttpMethod": "DELETE",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "System.Void",
+        "MediaTypes": [],
+        "StatusCode": 200
+      },
+      {
+        "Type": "System.Void",
+        "MediaTypes": [],
+        "StatusCode": 404
+      }
+    ]
+  },
+  {
+    "ContainingType": "motorcycle_rental_api.Controllers.v2.MotorcycleController",
+    "Method": "Get",
+    "RelativePath": "api/v2/Motorcycle",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "Displacement",
+        "Type": "System.Int32",
+        "IsRequired": false
+      },
+      {
+        "Name": "TotalRecords",
+        "Type": "System.Int32",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "System.Collections.Generic.IEnumerable\u00601[[motorcycle_rental_api.Models.MotorcycleEntity, motorcycle-rental-api, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "motorcycle_rental_api.Controllers.v2.MotorcycleController",
+    "Method": "Post",
+    "RelativePath": "api/v2/Motorcycle",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "entity",
+        "Type": "motorcycle_rental_api.Dtos.MotorcycleDto",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "motorcycle_rental_api.Models.MotorcycleEntity",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      },
+      {
+        "Type": "System.Void",
+        "MediaTypes": [],
+        "StatusCode": 400
+      }
+    ]
+  },
+  {
+    "ContainingType": "motorcycle_rental_api.Controllers.v2.MotorcycleController",
+    "Method": "Put",
+    "RelativePath": "api/v2/Motorcycle",
+    "HttpMethod": "PUT",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": false
+      },
+      {
+        "Name": "entity",
+        "Type": "motorcycle_rental_api.Dtos.MotorcycleDto",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "motorcycle_rental_api.Models.MotorcycleEntity",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      },
+      {
+        "Type": "System.Void",
+        "MediaTypes": [],
+        "StatusCode": 404
+      }
+    ]
+  },
+  {
+    "ContainingType": "motorcycle_rental_api.Controllers.v2.MotorcycleController",
+    "Method": "Get",
+    "RelativePath": "api/v2/Motorcycle/{id}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "motorcycle_rental_api.Models.MotorcycleEntity",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      },
+      {
+        "Type": "System.Void",
+        "MediaTypes": [],
+        "StatusCode": 404
+      }
+    ]
+  },
+  {
+    "ContainingType": "motorcycle_rental_api.Controllers.v2.MotorcycleController",
+    "Method": "Delete",
+    "RelativePath": "api/v2/Motorcycle/{id}",
+    "HttpMethod": "DELETE",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "System.Void",
+        "MediaTypes": [],
+        "StatusCode": 200
+      },
+      {
+        "Type": "System.Void",
+        "MediaTypes": [],
+        "StatusCode": 404
+      }
+    ]
+  },
+  {
+    "ContainingType": "motorcycle_rental_api.Controllers.v2.RentalController",
+    "Method": "Get",
+    "RelativePath": "api/v2/Rental",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "Displacement",
+        "Type": "System.Int32",
+        "IsRequired": false
+      },
+      {
+        "Name": "TotalRecords",
+        "Type": "System.Int32",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "System.Collections.Generic.IEnumerable\u00601[[motorcycle_rental_api.Models.RentalEntity, motorcycle-rental-api, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "motorcycle_rental_api.Controllers.v2.RentalController",
+    "Method": "Post",
+    "RelativePath": "api/v2/Rental",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "entity",
+        "Type": "motorcycle_rental_api.Dtos.RentalDto",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "motorcycle_rental_api.Models.RentalEntity",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      },
+      {
+        "Type": "System.Void",
+        "MediaTypes": [],
+        "StatusCode": 400
+      }
+    ]
+  },
+  {
+    "ContainingType": "motorcycle_rental_api.Controllers.v2.RentalController",
+    "Method": "Put",
+    "RelativePath": "api/v2/Rental",
+    "HttpMethod": "PUT",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": false
+      },
+      {
+        "Name": "entity",
+        "Type": "motorcycle_rental_api.Dtos.RentalDto",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "motorcycle_rental_api.Models.RentalEntity",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      },
+      {
+        "Type": "System.Void",
+        "MediaTypes": [],
+        "StatusCode": 404
+      }
+    ]
+  },
+  {
+    "ContainingType": "motorcycle_rental_api.Controllers.v2.RentalController",
+    "Method": "Get",
+    "RelativePath": "api/v2/Rental/{id}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "motorcycle_rental_api.Models.RentalEntity",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      },
+      {
+        "Type": "System.Void",
+        "MediaTypes": [],
+        "StatusCode": 404
+      }
+    ]
+  },
+  {
+    "ContainingType": "motorcycle_rental_api.Controllers.v2.RentalController",
+    "Method": "Delete",
+    "RelativePath": "api/v2/Rental/{id}",
     "HttpMethod": "DELETE",
     "IsController": true,
     "Order": 0,

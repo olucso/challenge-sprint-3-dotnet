@@ -2,55 +2,10 @@
   "openapi": "3.0.1",
   "info": {
     "title": "Motorcycle Rental API",
-    "version": "v1"
+    "version": "v2"
   },
   "paths": {
-    "/api/Auth/login": {
-      "post": {
-        "tags": [
-          "Auth"
-        ],
-        "summary": "Autenticação do usuário",
-        "description": "Realiza login e retorna um token JWT válido.",
-        "parameters": [
-          {
-            "name": "api-version",
-            "in": "query",
-            "schema": {
-              "type": "string"
-            }
-          }
-        ],
-        "requestBody": {
-          "content": {
-            "application/json": {
-              "schema": {
-                "$ref": "#/components/schemas/UserLoginDto"
-              }
-            },
-            "text/json": {
-              "schema": {
-                "$ref": "#/components/schemas/UserLoginDto"
-              }
-            },
-            "application/*+json": {
-              "schema": {
-                "$ref": "#/components/schemas/UserLoginDto"
-              }
-            }
-          }
-        },
-        "responses": {
-          "200": {
-            "description": "Login bem-sucedido."
-          },
-          "401": {
-            "description": "Credenciais inválidas."
-          }
-        }
-      }
-    },
-    "/api/v1/Client": {
+    "/api/v2/Client": {
       "get": {
         "tags": [
           "Client"
@@ -222,7 +177,7 @@
         }
       }
     },
-    "/api/v1/Client/{id}": {
+    "/api/v2/Client/{id}": {
       "get": {
         "tags": [
           "Client"
@@ -302,7 +257,7 @@
         }
       }
     },
-    "/api/v1/Motorcycle": {
+    "/api/v2/Motorcycle": {
       "get": {
         "tags": [
           "Motorcycle"
@@ -474,7 +429,7 @@
         }
       }
     },
-    "/api/v1/Motorcycle/{id}": {
+    "/api/v2/Motorcycle/{id}": {
       "get": {
         "tags": [
           "Motorcycle"
@@ -545,7 +500,7 @@
         }
       }
     },
-    "/api/v1/Rental": {
+    "/api/v2/Rental": {
       "get": {
         "tags": [
           "Rental"
@@ -717,7 +672,7 @@
         }
       }
     },
-    "/api/v1/Rental/{id}": {
+    "/api/v2/Rental/{id}": {
       "get": {
         "tags": [
           "Rental"
@@ -1081,20 +1036,6 @@
           },
           "completed": {
             "type": "boolean"
-          }
-        },
-        "additionalProperties": false
-      },
-      "UserLoginDto": {
-        "type": "object",
-        "properties": {
-          "username": {
-            "type": "string",
-            "nullable": true
-          },
-          "password": {
-            "type": "string",
-            "nullable": true
           }
         },
         "additionalProperties": false
