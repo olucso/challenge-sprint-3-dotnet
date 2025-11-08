@@ -23,6 +23,7 @@ Desenvolvido pelo grupo LTAKN:
 - ✅ Paginação (PageResultModel)
 - ✅ Links HATEOAS
 - ✅ Autenticação JWT (JSON Web Token)
+- ✅ Health Checks com Dashboard de Monitoramento
 
 ---
 
@@ -58,6 +59,8 @@ motorcycle-rental-api/
   - Controle de requisições configurado nos endpoints.
 - Autenticação JWT
   - Proteção dos endpoints com geração e validação de tokens.
+- Health Checks
+  - Monitoramento de status da API, banco de dados e conectividade externa.
 
 ---
 
@@ -134,7 +137,7 @@ Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9...
 
 ---
 
-🔒 Proteção dos Endpoints
+## 🔒 Proteção dos Endpoints
 
 Os controladores ou métodos que requerem autenticação possuem o atributo [Authorize].
 Exemplo:
@@ -152,7 +155,7 @@ Endpoints públicos (como `/api/Auth/login`) permanecem acessíveis sem token, m
 
 ---
 
-🧩 Vantagens do JWT
+## 🧩 Vantagens do JWT
 
 - Tokens stateless: não exigem sessão no servidor.
 - Assinatura digital garante integridade dos dados.
@@ -161,7 +164,7 @@ Endpoints públicos (como `/api/Auth/login`) permanecem acessíveis sem token, m
 
 ---
 
-🔑 Usuário padrão para testes
+## 🔑 Usuário padrão para testes
 
 Durante o desenvolvimento, um usuário padrão é utilizado para login de testes:
 
@@ -170,6 +173,107 @@ Usuário: admin
 Senha: 123456
 ```
 Esse usuário é criado em memória (mock) apenas para fins de autenticação e não é armazenado no banco de dados.
+
+---
+
+## 🩺 Health Checks e Dashboard de Monitoramento
+
+A API possui um sistema de monitoramento de saúde (Health Checks) integrado, que verifica continuamente o funcionamento dos principais componentes do sistema — incluindo banco de dados, API e conectividade externa (FIAP).
+Essa funcionalidade permite detectar falhas de forma proativa e visualizar o status da aplicação em tempo real através de um dashboard gráfico interativo.
+
+## 🔍 Componentes Monitorados
+
+- Oracle Database
+  - Verifica se a conexão com o banco está ativa e responsiva.
+- FIAP Health Check
+  - Testa a conectividade externa com o site oficial da FIAP para avaliar conectividade de rede.
+- API Health Check
+  - Avalia se a própria aplicação está ativa e processando requisições corretamente.
+
+## ⚙️ Implementação Técnica
+Os Health Checks são configurados no `Program.cs`:
+```
+builder.Services.AddHealthChecks()
+    .AddOracle(builder.Configuration.GetConnectionString("Oracle"), name: "Health Check Database")
+    .AddCheck<FIAPHealthCheck>("FIAP Health Check");
+
+builder.Services.AddHealthChecksUI(options =>
+{
+    options.SetEvaluationTimeInSeconds(5);
+    options.MaximumHistoryEntriesPerEndpoint(5);
+    options.AddHealthCheckEndpoint("API Health Check", "/health");
+}).AddInMemoryStorage();
+```
+
+A classe `FIAPHealthCheck` está localizada em `HealthChecks/FIAPHealthCheck.cs` e executa uma requisição HTTP para validar a resposta do site da FIAP:
+```
+using Microsoft.Extensions.Diagnostics.HealthChecks;
+
+public class FIAPHealthCheck : IHealthCheck
+{
+    public Task<HealthCheckResult> CheckHealthAsync(HealthCheckContext context, CancellationToken cancellationToken = default)
+    {
+        try
+        {
+            var url = "https://www.fiap.com.br";
+            using HttpClient client = new HttpClient(new HttpClientHandler { AllowAutoRedirect = true });
+            using var response = client.GetAsync(url).Result;
+
+            if (response.IsSuccessStatusCode)
+                return Task.FromResult(HealthCheckResult.Healthy("Sistema Funcionando."));
+            else
+                return Task.FromResult(HealthCheckResult.Degraded("O sistema não está funcionando."));
+        }
+        catch
+        {
+            return Task.FromResult(HealthCheckResult.Unhealthy("Sistema fora do ar."));
+        }
+    }
+}
+```
+
+## 🧭 Endpoints Disponíveis
+`/health`	- Retorna o status detalhado da API e dos serviços monitorados em formato JSON.
+`/dashboard`	- Interface visual (HealthChecks UI) com histórico e status gráfico.
+
+## 🧠 Exemplo de resposta do endpoint /health
+```
+{
+  "status": "Healthy",
+  "totalDuration": "00:00:01.032",
+  "entries": {
+    "Health Check Database": {
+      "status": "Healthy",
+      "description": "Conexão com o Oracle estável"
+    },
+    "FIAP Health Check": {
+      "status": "Healthy",
+      "description": "Sistema Funcionando."
+    }
+  }
+}
+```
+
+## 🖥️ Acessando o Dashboard
+1. Inicie a aplicação:
+```
+dotnet run
+```
+2. Acesse no navegador:
+```
+http://localhost:5166/dashboard
+```
+3. O painel exibirá em tempo real:
+- Status geral da API
+- Conexão com o Oracle
+- Verificação da FIAP
+- Histórico das últimas verificações
+
+## 💡 Benefícios
+- Monitoramento em tempo real do estado da API.
+- Integração com o HealthChecks.UI, que permite visualizar status e histórico.
+- Detecção rápida de falhas no banco de dados ou serviços externos.
+- Base para integração futura com sistemas de observabilidade como Grafana, Prometheus ou Azure Application Insights.
 
 ---
 
