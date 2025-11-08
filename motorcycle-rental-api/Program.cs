@@ -1,9 +1,16 @@
+﻿using HealthChecks.UI.Client;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.RateLimiting;
 using Microsoft.AspNetCore.ResponseCompression;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.IdentityModel.Tokens;
+using Microsoft.OpenApi.Models;
 using motorcycle_rental_api.Data.AppData;
 using motorcycle_rental_api.Data.Repositories;
 using motorcycle_rental_api.Data.Repositories.Interfaces;
+using motorcycle_rental_api.HealthChecks;
+using motorcycle_rental_api.Services;
+using System.Text;
 using System.Threading.RateLimiting;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -16,6 +23,7 @@ builder.Services.AddDbContext<ApplicationContext>(options =>
 builder.Services.AddTransient<IClientRepository, ClientRepository>();
 builder.Services.AddTransient<IMotorcycleRepository, MotorcycleRepository>();
 builder.Services.AddTransient<IRentalRepository, RentalRepository>();
+builder.Services.AddSingleton<JwtService>();
 
 builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
@@ -23,6 +31,31 @@ builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen(c =>
 {
     c.EnableAnnotations();
+
+    c.AddSecurityDefinition("Bearer", new OpenApiSecurityScheme
+    {
+        Name = "Authorization",
+        Type = SecuritySchemeType.Http,
+        Scheme = "Bearer",
+        BearerFormat = "JWT",
+        In = ParameterLocation.Header,
+        Description = "Insira o token JWT no formato: Bearer {seu_token}"
+    });
+
+    c.AddSecurityRequirement(new OpenApiSecurityRequirement
+    {
+        {
+            new OpenApiSecurityScheme
+            {
+                Reference = new OpenApiReference
+                {
+                    Type = ReferenceType.SecurityScheme,
+                    Id = "Bearer"
+                }
+            },
+            Array.Empty<string>()
+        }
+    });
 });
 
 builder.Services.AddRateLimiter(options => {
@@ -38,7 +71,6 @@ builder.Services.AddRateLimiter(options => {
 });
 
 builder.Services.AddResponseCompression(options => {
-    //options.EnableForHttps = true;
     options.Providers.Add<BrotliCompressionProvider>();
     options.Providers.Add<GzipCompressionProvider>();
 });
@@ -52,6 +84,41 @@ builder.Services.Configure<GzipCompressionProviderOptions>(options => {
     options.Level = System.IO.Compression.CompressionLevel.Fastest;
 });
 
+builder.Services.AddHealthChecks()
+    .AddOracle(builder.Configuration.GetConnectionString("Oracle"), name: "Health Check Database")
+    .AddCheck<FIAPHealthCheck>("FIAP Health Check");
+
+builder.Services.AddHealthChecksUI(options =>
+{
+    options.SetEvaluationTimeInSeconds(5);
+    options.MaximumHistoryEntriesPerEndpoint(5);
+    options.AddHealthCheckEndpoint("API Health Check", "/health");
+}).AddInMemoryStorage();
+
+var jwtSettings = builder.Configuration.GetSection("Jwt");
+var key = Encoding.ASCII.GetBytes(jwtSettings["Key"]);
+
+builder.Services.AddAuthentication(options =>
+{
+    options.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
+    options.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
+})
+.AddJwtBearer(options =>
+{
+    options.RequireHttpsMetadata = false;
+    options.SaveToken = true;
+    options.TokenValidationParameters = new TokenValidationParameters
+    {
+        ValidateIssuer = true,
+        ValidateAudience = true,
+        ValidateLifetime = true,
+        ValidateIssuerSigningKey = true,
+        ValidIssuer = jwtSettings["Issuer"],
+        ValidAudience = jwtSettings["Audience"],
+        IssuerSigningKey = new SymmetricSecurityKey(key)
+    };
+});
+
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
@@ -60,6 +127,18 @@ if (app.Environment.IsDevelopment())
     app.UseSwagger();
     app.UseSwaggerUI();
 }
+
+app.UseHealthChecks("/health", new Microsoft.AspNetCore.Diagnostics.HealthChecks.HealthCheckOptions
+{
+    Predicate = p => true,
+    ResponseWriter = UIResponseWriter.WriteHealthCheckUIResponse
+});
+app.UseHealthChecksUI(options =>
+{
+    options.UIPath = "/dashboard";
+});
+
+app.UseAuthentication();
 
 app.UseAuthorization();
 app.UseRateLimiter();

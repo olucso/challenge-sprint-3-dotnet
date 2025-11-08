@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.RateLimiting;
 using motorcycle_rental_api.Data.Repositories.Interfaces;
 using motorcycle_rental_api.Dtos;
@@ -10,6 +11,7 @@ namespace motorcycle_rental_api.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
+    [Authorize]
     public class RentalController : ControllerBase
     {
         private readonly IRentalRepository _rentalRepository;
