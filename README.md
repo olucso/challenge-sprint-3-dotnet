@@ -22,6 +22,7 @@ Desenvolvido pelo grupo LTAKN:
 - ✅ Rate Limiting
 - ✅ Paginação (PageResultModel)
 - ✅ Links HATEOAS
+- ✅ Autenticação JWT (JSON Web Token)
 
 ---
 
@@ -55,6 +56,8 @@ motorcycle-rental-api/
   - Links de navegação retornados junto aos recursos.
 - Rate Limiting
   - Controle de requisições configurado nos endpoints.
+- Autenticação JWT
+  - Proteção dos endpoints com geração e validação de tokens.
 
 ---
 
@@ -69,6 +72,104 @@ No arquivo `appsettings.json` configure sua conexão com o Oracle:
   }
 }
 ```
+
+---
+
+## 🛡️ Autenticação JWT (JSON Web Token)
+
+A API utiliza autenticação baseada em tokens JWT para garantir segurança e controle de acesso aos endpoints protegidos.
+Somente usuários autenticados podem realizar operações como criação, atualização ou exclusão de recursos.
+
+🔧 Configuração
+No arquivo `appsettings.json`, adicione as configurações do JWT:
+```
+"Jwt": {
+  "Key": "sua_chave_secreta_super_segura_aqui",
+  "Issuer": "MotorcycleRentalAPI",
+  "Audience": "MotorcycleRentalClient",
+  "ExpireMinutes": 60
+}
+```
+Essas informações são utilizadas para assinar e validar os tokens gerados.
+
+---
+
+## 👤 Endpoint de Login
+
+O endpoint de login (`/api/Auth/login`) é responsável por autenticar o usuário e gerar o token JWT.
+
+Requisição:
+```
+POST /api/Auth/login
+Content-Type: application/json
+
+{
+  "username": "admin",
+  "password": "123456"
+}
+```
+
+Resposta:
+```
+{
+  "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9...",
+  "expiration": "2025-11-07T22:00:00Z"
+}
+```
+
+---
+
+## 🔐 Utilizando o Token no Swagger
+
+1. Após rodar a aplicação e acessar o Swagger (`http://localhost:5166/swagger`), clique no botão "Authorize" (ícone de cadeado).
+
+2. No campo exibido, insira o token obtido no login, precedido de `Bearer `.
+
+```
+Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9...
+```
+
+3. Clique em Authorize para autenticar.
+   Agora todos os endpoints protegidos poderão ser acessados.
+
+---
+
+🔒 Proteção dos Endpoints
+
+Os controladores ou métodos que requerem autenticação possuem o atributo [Authorize].
+Exemplo:
+
+```
+[Authorize]
+[HttpPost]
+public async Task<IActionResult> Create(MotorcycleDto dto)
+{
+    ...
+}
+```
+
+Endpoints públicos (como `/api/Auth/login`) permanecem acessíveis sem token, marcados com `[AllowAnonymous]`.
+
+---
+
+🧩 Vantagens do JWT
+
+- Tokens stateless: não exigem sessão no servidor.
+- Assinatura digital garante integridade dos dados.
+- Fácil integração com clientes web e mobile.
+- Suporte nativo no ASP.NET Core.
+
+---
+
+🔑 Usuário padrão para testes
+
+Durante o desenvolvimento, um usuário padrão é utilizado para login de testes:
+
+```
+Usuário: admin  
+Senha: 123456
+```
+Esse usuário é criado em memória (mock) apenas para fins de autenticação e não é armazenado no banco de dados.
 
 ---
 
