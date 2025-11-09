@@ -1,4 +1,5 @@
-﻿using HealthChecks.UI.Client;
+﻿using System.Runtime.CompilerServices;
+using HealthChecks.UI.Client;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.RateLimiting;
 using Microsoft.AspNetCore.ResponseCompression;
@@ -13,6 +14,8 @@ using motorcycle_rental_api.Services;
 using System.Text;
 using System.Threading.RateLimiting;
 using motorcycle_rental_api.MachineLearning;
+
+[assembly: InternalsVisibleTo("motorcycle_rental_api.Tests")]
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -176,3 +179,5 @@ app.UseResponseCompression();
 app.MapControllers();
 
 app.Run();
+
+public partial class ApiMarker { }

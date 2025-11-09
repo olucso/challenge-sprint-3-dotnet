@@ -13,6 +13,7 @@
     <PackageReference Include="AspNetCore.HealthChecks.UI.Client" Version="8.0.1" />
     <PackageReference Include="AspNetCore.HealthChecks.UI.InMemory.Storage" Version="8.0.1" />
     <PackageReference Include="Microsoft.AspNetCore.Authentication.JwtBearer" Version="8.0.21" />
+    <PackageReference Include="Microsoft.AspNetCore.Mvc.Testing" Version="8.0.21" />
     <PackageReference Include="Microsoft.AspNetCore.Mvc.Versioning" Version="5.0.0" />
     <PackageReference Include="Microsoft.AspNetCore.Mvc.Versioning.ApiExplorer" Version="5.0.0" />
     <PackageReference Include="Microsoft.EntityFrameworkCore" Version="8.0.20" />
@@ -32,5 +33,9 @@
     <Folder Include="Tests\" />
     <Folder Include="Views\" />
   </ItemGroup>
+
+	<ItemGroup>
+		<InternalVisibleTo Include="motorcycle-rental-api.Tests"/>
+	</ItemGroup>
 
 </Project>

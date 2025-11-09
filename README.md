@@ -84,6 +84,72 @@ No arquivo `appsettings.json` configure sua conexão com o Oracle:
 
 ---
 
+## 🧪 Testes Automatizados
+
+A solução contém testes automatizados em xUnit, divididos em:
+- 🧱 Model Tests: Testam as entidades (`ClientEntity`, `MotorcycleEntity`, `RentalEntity`) e suas validações (`[Required]`, `[StringLength]`, etc.).
+- 🌐 Integration Tests: Utilizam `WebApplicationFactory<ApiMarker>` para testar endpoints reais da API (exemplo: `GET /api/v1/Motorcycle`).
+
+## 🧰 Estrutura dos Arquivos de Teste
+```
+motorcycle_rental_api.Tests/
+├── App/
+│   ├── ClientEntityTest.cs
+│   ├── MotorcycleEntityTest.cs
+│   ├── RentalEntityTest.cs
+│
+├── ControllerTests.cs
+```
+
+## ▶️ Como Executar os Testes
+
+1️⃣ Pré-requisitos
+- SDK .NET 8.0+ instalado
+  Verifique com:
+```
+dotnet --version
+```
+- A API deve compilar corretamente (sem erros no projeto principal `motorcycle_rental_api`).
+
+2️⃣ Restaurar Dependências
+- No diretório raiz da solução (`.sln`):
+```
+dotnet restore
+```
+
+3️⃣ Executar Todos os Testes
+- Use o comando abaixo para rodar todos os testes (unitários e de integração):
+```
+dotnet test
+```
+
+📋 O que acontece:
+- O .NET compila a solução.
+- Executa automaticamente todos os testes [Fact] e [Theory] com o xUnit.
+- Mostra no console os resultados de sucesso/falha.
+
+4️⃣ Executar Apenas um Conjunto de Testes
+👉 Testes de Entidades (Validações)
+```
+dotnet test --filter "FullyQualifiedName~ClientEntityTest"
+dotnet test --filter "FullyQualifiedName~MotorcycleEntityTest"
+dotnet test --filter "FullyQualifiedName~RentalEntityTest"
+```
+
+👉 Teste de Controller (Integração)
+```
+dotnet test --filter "FullyQualifiedName~ControllerTests"
+```
+
+5️⃣ Resultado Esperado
+Se tudo estiver configurado corretamente, o terminal mostrará algo como:
+```
+Starting test execution, please wait...
+Passed!  - Failed: 0, Passed: 25, Skipped: 0, Total: 25, Duration: 2 s
+```
+
+---
+
 ## 🛡️ Autenticação JWT (JSON Web Token)
 
 A API utiliza autenticação baseada em tokens JWT para garantir segurança e controle de acesso aos endpoints protegidos.
