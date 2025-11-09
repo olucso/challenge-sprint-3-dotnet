@@ -545,6 +545,39 @@
         }
       }
     },
+    "/api/v1/Prediction/rental": {
+      "post": {
+        "tags": [
+          "Prediction"
+        ],
+        "summary": "Predição de valor de aluguel",
+        "description": "Usa ML.NET para prever o valor total de um aluguel com base nos dias, valor diário e fidelidade do cliente.",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/RentalInputModel"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/RentalInputModel"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/RentalInputModel"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Predição realizada com sucesso."
+          }
+        }
+      }
+    },
     "/api/v1/Rental": {
       "get": {
         "tags": [
@@ -1081,6 +1114,28 @@
           },
           "completed": {
             "type": "boolean"
+          }
+        },
+        "additionalProperties": false
+      },
+      "RentalInputModel": {
+        "type": "object",
+        "properties": {
+          "days": {
+            "type": "number",
+            "format": "float"
+          },
+          "dailyValue": {
+            "type": "number",
+            "format": "float"
+          },
+          "clientFidelity": {
+            "type": "number",
+            "format": "float"
+          },
+          "totalValue": {
+            "type": "number",
+            "format": "float"
           }
         },
         "additionalProperties": false

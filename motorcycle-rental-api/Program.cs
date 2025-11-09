@@ -12,6 +12,7 @@ using motorcycle_rental_api.HealthChecks;
 using motorcycle_rental_api.Services;
 using System.Text;
 using System.Threading.RateLimiting;
+using motorcycle_rental_api.MachineLearning;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -20,10 +21,18 @@ builder.Services.AddDbContext<ApplicationContext>(options =>
     options.UseOracle(builder.Configuration.GetConnectionString("Oracle"));
 });
 
+builder.Services.AddControllers()
+    .AddJsonOptions(x =>
+    {
+        x.JsonSerializerOptions.ReferenceHandler = System.Text.Json.Serialization.ReferenceHandler.IgnoreCycles;
+        x.JsonSerializerOptions.WriteIndented = true;
+    });
+
 builder.Services.AddTransient<IClientRepository, ClientRepository>();
 builder.Services.AddTransient<IMotorcycleRepository, MotorcycleRepository>();
 builder.Services.AddTransient<IRentalRepository, RentalRepository>();
 builder.Services.AddSingleton<JwtService>();
+builder.Services.AddSingleton<RentalPredictionService>();
 
 builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle

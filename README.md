@@ -24,21 +24,25 @@ Desenvolvido pelo grupo LTAKN:
 - ✅ Links HATEOAS
 - ✅ Autenticação JWT (JSON Web Token)
 - ✅ Health Checks com Dashboard de Monitoramento
+- ✅ Machine Learning (ML.NET) para previsão de valores de locação
 
 ---
 
 ## 🧱 Estrutura da API
 
-```sql
+```
 motorcycle-rental-api/
-│── Controllers/        # Controladores REST
+│── Controllers/               # Controladores REST
 │── Data/
-│   ├── AppData/        # DbContext
-│   ├── Repositories/   # Repositórios e Interfaces
-│── Dtos/               # Objetos de transferência de dados
-│── Mappers/            # Extensões para conversão DTO ↔ Entidade
-│── Models/             # Entidades mapeadas no banco
-│── Program.cs          # Configuração inicial
+│   ├── AppData/               # DbContext
+│   ├── Repositories/          # Repositórios e Interfaces
+│── Dtos/                      # Objetos de transferência de dados
+│── HealthChecks/              # Verificação de componentes do sistema
+│── Mappers/                   # Extensões para conversão DTO ↔ Entidade
+│── Models/                    # Entidades mapeadas no banco
+│── Services/                  # Serviços da aplicação
+│── MachineLearning/           # Modelos e serviços de previsão (ML.NET)
+│── Program.cs                 # Configuração inicial
 ```
 
 ---
@@ -61,6 +65,8 @@ motorcycle-rental-api/
   - Proteção dos endpoints com geração e validação de tokens.
 - Health Checks
   - Monitoramento de status da API, banco de dados e conectividade externa.
+- Machine Learning
+  - Predição automática do valor total de locações com base em dados históricos (dias, valor diário e fidelidade do cliente), utilizando ML.NET e modelo de regressão linear (SDCA).
 
 ---
 
@@ -274,6 +280,96 @@ http://localhost:5166/dashboard
 - Integração com o HealthChecks.UI, que permite visualizar status e histórico.
 - Detecção rápida de falhas no banco de dados ou serviços externos.
 - Base para integração futura com sistemas de observabilidade como Grafana, Prometheus ou Azure Application Insights.
+
+---
+
+## 🧠 Machine Learning (Previsão de Valor de Locação)
+
+A API conta com um módulo de Machine Learning integrado, desenvolvido com ML.NET, capaz de prever o valor total estimado de uma locação com base em variáveis históricas como dias de aluguel, valor diário e fidelidade do cliente.
+Essa funcionalidade demonstra a integração de IA preditiva diretamente na camada de negócios da aplicação, tornando o sistema mais inteligente e responsivo.
+
+## ⚙️ Funcionamento Técnico
+
+O modelo utiliza regressão linear (SDCA Regression Trainer) para aprender padrões a partir de dados de locações anteriores.
+O pipeline é montado e treinado automaticamente na inicialização da aplicação, sem necessidade de intervenção manual.
+
+🔹 Estrutura dos Arquivos
+```
+MachineLearning/
+│── RentalPredictionService.cs   # Serviço principal de ML.NET (treino e predição)
+│── Models/
+│   └── RentalPredictionModel.cs # Classes de entrada (input) e saída (prediction)
+```
+
+🔹 Classe de Entrada (RentalInputModel)
+Representa os dados utilizados como base para o cálculo:
+```
+public class RentalInputModel
+{
+    public float Days { get; set; }
+    public float DailyValue { get; set; }
+    public float ClientFidelity { get; set; }
+
+    // Valor total real (usado apenas no treinamento)
+    public float TotalValue { get; set; }
+}
+```
+
+🔹 Classe de Saída (RentalPrediction)
+Retorna o valor estimado da locação:
+```
+public class RentalPrediction
+{
+    public float Score { get; set; } // Valor total previsto
+}
+```
+
+🔹 Serviço de Predição
+O serviço RentalPredictionService é responsável por:
+- Criar e treinar o modelo com dados de exemplo;
+- Definir o pipeline de features (Days, DailyValue, ClientFidelity);
+- Executar a predição com base em novos valores de entrada.
+
+```
+var pipeline = _mlContext.Transforms.Concatenate(
+                    "Features",
+                    nameof(RentalInputModel.Days),
+                    nameof(RentalInputModel.DailyValue),
+                    nameof(RentalInputModel.ClientFidelity))
+               .Append(_mlContext.Regression.Trainers.Sdca(
+                    labelColumnName: nameof(RentalInputModel.TotalValue),
+                    maximumNumberOfIterations: 100));
+```
+
+## 🔍 Endpoint de Predição
+A API expõe um endpoint para realizar a previsão diretamente pelo Swagger:
+```
+POST /api/Prediction
+Content-Type: application/json
+```
+
+Exemplo de requisição:
+```
+{
+  "days": 3,
+  "dailyValue": 90,
+  "clientFidelity": 1
+}
+```
+
+Resposta:
+```
+{
+  "predictedTotalValue": 275.45
+}
+```
+
+## 🧩 Lógica de Cálculo
+Durante o treinamento, o modelo aprende padrões como:
+- Maior número de dias → aumento linear no total.
+- Descontos aplicados a clientes fiéis (ClientFidelity = 1).
+- Variação de tarifas diárias por tipo de moto ou data.
+Essas relações são modeladas por uma regressão linear multivariável, permitindo que o sistema generalize novas situações de locação com boa precisão.
 
 ---
 

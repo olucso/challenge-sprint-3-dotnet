@@ -344,6 +344,28 @@
     ]
   },
   {
+    "ContainingType": "motorcycle_rental_api.Controllers.PredictionController",
+    "Method": "PredictRental",
+    "RelativePath": "api/v1/Prediction/rental",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "input",
+        "Type": "motorcycle_rental_api.MachineLearning.Models.RentalInputModel",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "System.Void",
+        "MediaTypes": [],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
     "ContainingType": "motorcycle_rental_api.Controllers.RentalController",
     "Method": "Get",
     "RelativePath": "api/v1/Rental",
